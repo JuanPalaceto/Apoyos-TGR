@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>.: Sistema de Apoyos :.</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Sistema de Apoyos TGR" />
+    <meta name="author" content="Juan Pablo Palaceto Céspedes" />
+    <link rel="icon" type="image/x-icon" href="assets/img/logo.ico"/>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="<%= Page.ResolveUrl("~")%>DataTables/datatables.min.css" />
+    <link href="<%= Page.ResolveUrl("~")%>css/styles.css" rel="stylesheet" />
+    
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="sb-nav-fixed">
+    <%-- El onsubmit="return false" evita que se recagrue la página al presionar el botón, es decir que se envíe el formulario, aún así funciona con la función asignada al click, no fue necesario pero lo dejo por las dudas futuras jsjsj --%>
+    <form id="form1" name="myForm" runat="server">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm me-4 me-lg-0 ms-3" id="sidebarToggle" type="button" href="#!"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Brand-->
+            <a class="ps-3" href="Inicio.aspx"><img src="assets/img/logo.png" class="logo-partido" alt="Logo Partido Verde" /></a>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto">
+                <li class="navbar-user">
+                    <%-- Lo normal sería desde el back ponerle texto al label con lblNombreSesion.Text = ""; pero esto es para practicar las maneras distintas de hacerlo:p --%>
+                    <asp:Label Text="" runat="server" ID="lblNombreSesion" CssClass="text-white"><%=NombreUser %></asp:Label>                    
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <%--<li><a class="dropdown-item" href="#!">Settings</a></li>
+                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
+                        <li><hr class="dropdown-divider" /></li>--%>
+                        <li>
+                            <asp:LinkButton runat="server" CssClass="dropdown-item" ID="BtnCerrarSesion" Text="Cerrar Sesión" OnClick="CerrarSesion_Click"></asp:LinkButton></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Página principal</div>
+                            <a class="nav-link" href="Inicio.aspx">
+                                <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                                Inicio
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Herramientas</div>
+                            <a class="nav-link" href="Agenda.aspx">
+                                <div class="sb-nav-link-icon"><i class="fas fa-address-book"></i></div>
+                                Agenda                                
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Reportes</div>
+                            <a class="nav-link" href="Beneficiarios.aspx">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-friends"></i></div>
+                                Beneficiarios                                
+                            </a>
+                            <a class="nav-link" href="Solicitudes.aspx">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-pie"></i></div>
+                                Porcentaje Solicitudes          
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Usuario conectado:</div>
+                        <%-- Convertir esto a variable de sesión --%>
+                        <asp:Label Text="" runat="server" ID="lblSesion" />
+                    </div>
+                </nav>
+            </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="js/scripts.js"></script>
+    <script src="<%= Page.ResolveUrl("~")%>assets/js/main.js"></script>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <%-- Tal vez pueda mochar a partir de aquí --%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/chart-area-demo.js"></script>
+    <script src="assets/demo/chart-pie-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="DataTables/datatables.min.js"></script>        
+</body>
+</html>
